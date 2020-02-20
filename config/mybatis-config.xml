@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- settings，mybatis设置项 -->
+    <!-- 需要写在前面 -->
+    <settings>
+        <!-- mapUnderscoreToCamelCase，开启驼峰命名 -->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+
+    <!-- typeAliases，别名处理器，为java类型起别名 -->
+    <typeAliases>
+        <!--
+            typeAlias，为某一个Java类型起别名
+            type：指定要起别名的类型全类名，默认别名是类名的小写（大小写均可，大小写模糊）
+            alias：指定自定义别名（大小写均可，大小写模糊）
+         -->
+        <typeAlias type="com.company.bean.Employee" alias="emp" />
+
+        <!--
+            package：为包下的所有类批量起别名
+            name：指定的包名（当前包 与 后代子包 中的 所有类起一个默认别名）
+            开启包批量起别名后，可以在类下使用@Alias注解为每个类设置特定的别名
+        -->
+        <package name="com.company.bean"/>
+    </typeAliases>
+
+    <!-- environments，环境配置 -->
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <!-- 数据源  -->
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://47.97.252.157:3306/demo"/>
+                <property name="username" value="root"/>
+                <property name="password" value="123456"/>
+            </dataSource>
+
+        </environment>
+    </environments>
+
+    <!-- 映射路径，将sql映射配置到config文件中 -->
+    <mappers>
+        <mapper resource="EmployeeMapper.xml"/>
+    </mappers>
+
+</configuration>

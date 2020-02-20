@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+    namespace: 命名空间，指向接口的全类名，使得接口与xml进行绑定
+    id:唯一标识
+    resultTyoe:返回值
+
+    Employee getEmpById(Integer id);
+-->
+<mapper namespace="com.company.dao.EmployeeMapper">
+    <!-- 在resultType中，不再指定为bean的类名，而是配置文件中设定的别名 -->
+    <select id="getEmpById" resultType="EMP">
+        select id,last_name,gender,email from tbl_employee where id = #{id}
+    </select>
+</mapper>
